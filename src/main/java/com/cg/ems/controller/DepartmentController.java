@@ -20,7 +20,7 @@ import com.cg.ems.service.IDepartmentService;
 public class DepartmentController {
 @Autowired
 private IDepartmentService departmentService;
-@GetMapping("/getAlldepartments")
+@GetMapping("/getall/departments")
 public List<DepartmentDto> getAllDepartment(){
 	return departmentService.getAllDepartment();
 }
@@ -30,7 +30,7 @@ public String addDepartment(@RequestBody DepartmentDto dname) throws DepartmentE
 	return "Department Added Succefully";
 	
 }
-@GetMapping("/getalldepartmentCount")
+@GetMapping("/getall/departmentcount")
 public int getAllDepartmentCount() {
 	return departmentService.getAllDepartCount();
 }

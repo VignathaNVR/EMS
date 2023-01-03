@@ -28,25 +28,25 @@ public class EmployeeController {
 		return service.getAllEmployees();
 	}
 	
-	@PostMapping("/addEmployee")
+	@PostMapping("/add/employee")
 	public EmployeeDto addEmployee(@RequestBody EmployeeDto emp) {
 		return service.addEmployee(emp);
 	}
-	@GetMapping("/getEmployee/{id}")
+	@GetMapping("/get/employee/{id}")
 	public EmployeeDto getEmployeeById(@PathVariable ("id") int id) throws EmployeeException{
 		return service.getEmployeeById(id);
 	}
 	
-	@PutMapping("/updateEmployee")
+	@PutMapping("/update/employee")
 	public EmployeeDto updateemployee(@RequestBody EmployeeDto emp) {
 		return service.updateEmployee(emp);
 	}
-	@DeleteMapping("/delEmployee/{id}")
+	@DeleteMapping("/del/employee/{id}")
 	public void deleteEmployee(@PathVariable ("id") int id) {
 		this.service.deleteEmployee(id);
 		
 	}
-	@GetMapping("/countEmployee")
+	@GetMapping("/count/employee")
 	public int getEmployeeCount() {
 		return service.getEmployeeCount();
 	}

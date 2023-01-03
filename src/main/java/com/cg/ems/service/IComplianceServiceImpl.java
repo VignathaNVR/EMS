@@ -8,16 +8,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.cg.ems.repository.ComplianceRepository;
-import com.cg.ems.repository.StatusReportRepository;
+import com.cg.ems.repository.IComplianceRepository;
+import com.cg.ems.repository.IStatusReportRepository;
 import com.cg.ems.dto.ComplianceDto;
 import com.cg.ems.dto.StatusReportDto;
 import com.cg.ems.exception.ComplianceIdExistsException;
 import com.cg.ems.exception.RlNotExistsException;
+import com.cg.ems.exception.RlNotExistsWithIdException;
 @Service
 public class IComplianceServiceImpl implements IComplianceService{
 	@Autowired
-	ComplianceRepository cRepository;
+	IComplianceRepository cRepository;
 	
 	
 
@@ -56,8 +57,11 @@ public class IComplianceServiceImpl implements IComplianceService{
 	 */
 
 	@Override
-	public List<ComplianceDto> getAllRl(String userId) {
-		
+	public List<ComplianceDto> getAllRl(String userId) throws RlNotExistsWithIdException{
+		Optional<List<ComplianceDto>> cd =Optional.of(cRepository.getAllRl(userId));
+		if(cRepository.findAll().isEmpty()) {
+			throw new RlNotExistsWithIdException("No Rl with the given userId");
+		}
 		return cRepository.getAllRl(userId);
 	}
 

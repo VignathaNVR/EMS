@@ -6,15 +6,17 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cg.ems.repository.StatusReportRepository;
+import com.cg.ems.repository.IStatusReportRepository;
 import com.cg.ems.dto.ComplianceDto;
 import com.cg.ems.dto.StatusReportDto;
 import com.cg.ems.exception.ComplianceIdExistsException;
+import com.cg.ems.exception.ReportNotExistsException;
+import com.cg.ems.exception.RlNotExistsException;
 import com.cg.ems.exception.StatusIdExistsException;
 @Service 
 public class IStatusReportServiceImpl implements IStatusReportService{
 	@Autowired
-	StatusReportRepository sRepository;
+	IStatusReportRepository sRepository;
 	@Override
 	
 	/* @author : LavanyaKunda
@@ -36,8 +38,11 @@ public class IStatusReportServiceImpl implements IStatusReportService{
 	 */
 
 	@Override
-	public List<StatusReportDto> getAllStatusReport(String userId, int complianceId) {
-		// TODO Auto-generated method stub
+	public List<StatusReportDto> getAllStatusReport(String userId, int complianceId) throws ReportNotExistsException{
+		Optional<List<StatusReportDto>> cd = Optional.of(sRepository.getAllStatusReport(userId, complianceId));
+		if(sRepository.findAll().isEmpty()) {
+			throw new ReportNotExistsException("No status Reports");
+		}
 		return sRepository.getAllStatusReport(userId, complianceId);
 	}
 

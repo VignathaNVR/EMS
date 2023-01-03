@@ -10,6 +10,6 @@ import com.cg.ems.dto.EmployeeDto;
 
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<EmployeeDto,Integer> {
+public interface IEmployeeRepository extends JpaRepository<EmployeeDto,Integer> {
 
 }

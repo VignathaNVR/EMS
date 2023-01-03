@@ -7,10 +7,18 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.cg.ems.dto.ComplianceDto;
 import com.cg.ems.dto.StatusReportDto;
+
+import jakarta.persistence.Id;
+
+
 @Repository
-public interface StatusReportRepository extends JpaRepository<StatusReportDto, Integer> {
+public interface IComplianceRepository extends JpaRepository<ComplianceDto, Integer>{
+	@Query("select cd from ComplianceDto cd where cd.userId=:id")
+	public List<ComplianceDto> getAllRl(@Param("id") String userId);
 	
-	@Query("select cd from StatusReportDto cd where cd.userId=:id and cd.complianceId=:cid")
-	public List<StatusReportDto> getAllStatusReport(@Param("id") String userId,@Param("cid") int complianceId);
+
+	
+
 }

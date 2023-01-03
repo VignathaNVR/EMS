@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.ems.repository.ComplianceRepository;
+import com.cg.ems.repository.IComplianceRepository;
 import com.cg.ems.dto.ComplianceDto;
 import com.cg.ems.dto.DepartmentDto;
 import com.cg.ems.dto.StatusReportDto;
 import com.cg.ems.exception.ComplianceIdExistsException;
 import com.cg.ems.exception.RlNotExistsException;
+import com.cg.ems.exception.RlNotExistsWithIdException;
 import com.cg.ems.service.IComplianceServiceImpl;
 
 @RestController
@@ -27,20 +28,20 @@ public class ComplianceController {
 	IComplianceServiceImpl cService;
 	
 	
-	@PostMapping("/createRl")
+	@PostMapping("/create/rl")
 	public void createRl(@RequestBody ComplianceDto cdto ) throws ComplianceIdExistsException {
 		this.cService.createRl(cdto);
 		
 		
 	}
-	@GetMapping("/getAllRl")
+	@GetMapping("/getall/rl")
 	public List<ComplianceDto> getAllRl() throws RlNotExistsException {
 		// TODO Auto-generated method stub
 		return cService.getAllRl();
 		
 	}
-	@GetMapping("/getAllRl/{userId}")
-	public List<ComplianceDto> getAllRl(@PathVariable("userId") String userId) {
+	@GetMapping("/getall/rl/{userId}")
+	public List<ComplianceDto> getAllRl(@PathVariable("userId") String userId) throws RlNotExistsWithIdException {
 		// TODO Auto-generated method stub
 		List<ComplianceDto> cd = cService.getAllRl(userId);
 		

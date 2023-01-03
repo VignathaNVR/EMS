@@ -36,9 +36,6 @@ public class StatusReportDto {
 	Integer complianceId;
 	@OneToOne(cascade = CascadeType.ALL)
 	DepartmentDto department;
-	
-	
-	
 	public StatusReportDto() {
 		super();
 	}

@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.cg.ems.dto.EmployeeDto;
 import com.cg.ems.exception.EmployeeException;
-import com.cg.ems.repository.EmployeeRepository;
+import com.cg.ems.repository.IEmployeeRepository;
 
 
 @Service
 public class IEmployeeServiceImpl {
 	@Autowired 
-	EmployeeRepository repo;
+	IEmployeeRepository repo;
 	
 	
 	public List<EmployeeDto>getAllEmployees(){
